@@ -1,6 +1,7 @@
 import express, { type Express } from "express";
 import cors from "cors";
 import User from "./routes/User";
+import Banner from "./routes/Banner";
 
 const app: Express = express();
 const PORT = 8000;
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", User);
+app.use("/api/banner", Banner);
 
 app.listen(PORT);
 

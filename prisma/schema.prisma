@@ -29,3 +29,15 @@ model User {
 
   @@map("users")
 }
+
+model Banner {
+  id          String   @id @default(uuid())
+  image       String   @db.VarChar(255)
+  alt         String?  @db.VarChar(255)
+  title       String?  @db.VarChar(255)
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("banners")
+}

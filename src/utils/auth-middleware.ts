@@ -30,7 +30,7 @@ export const authenticateJWT = (
       req.user = decoded;
       return next();
    } catch (error) {
-      res.status(403).json({ message: "Unauthorized" });
+      res.status(401).json({ message: "Unauthorized" });
       return;
    }
 };

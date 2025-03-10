@@ -1,0 +1,4 @@
+DATABASE_URL="postgresql://username:password@host:5432/db-name"
+JWT_SECRET="your-jwt-secret"
+BASE_URL="api-domain.com"
+NODE_ENV="development"

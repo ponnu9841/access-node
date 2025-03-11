@@ -43,7 +43,7 @@ router.post(
             res.status(200).json({ data: partner });
          }
       } catch (error) {
-         res.status(500).json({ error: "An error occurred" });
+         errorHandler(error as Error, req, res);
       }
    }
 );
@@ -75,7 +75,7 @@ router.put(
          });
          res.status(200).json({ data: partner });
       } catch (error) {
-         console.log(error);
+         errorHandler(error as Error, req, res);
       }
    }
 );

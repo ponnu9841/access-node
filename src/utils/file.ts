@@ -16,7 +16,6 @@ export const deleteFileFromUrl = (fileUrl: string): void => {
       // Check if file exists before deleting
       if (fs.existsSync(absolutePath)) {
          fs.unlinkSync(absolutePath); // Delete the file
-         console.log(`Deleted file: ${absolutePath}`);
       } else {
          console.warn(`File not found: ${absolutePath}`);
       }

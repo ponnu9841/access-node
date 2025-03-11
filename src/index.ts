@@ -4,6 +4,7 @@ import User from "./routes/User";
 import Banner from "./routes/Banner";
 import About from "./routes/About";
 import Partner from "./routes/Partner";
+import Service from "./routes/Service";
 
 const app: Express = express();
 const PORT = 8000;
@@ -45,6 +46,7 @@ app.use("/api", User);
 app.use("/api/banner", Banner);
 app.use("/api/about", About);
 app.use("/api/partner", Partner);
+app.use("/api/service", Service);
 
 app.listen(PORT);
 

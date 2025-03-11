@@ -18,6 +18,13 @@ enum Role {
   admin
 }
 
+enum PolicyType {
+  privacy_policy
+  terms_conditions
+  cancellation_policy
+  return_policy
+}
+
 model User {
   id         String   @id @default(uuid())
   name       String   @db.VarChar(255)
@@ -165,4 +172,14 @@ model Seo {
   updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@map("seo")
+}
+
+model Policy {
+  id        String     @id @default(uuid())
+  type      PolicyType @unique
+  content   String
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  @@map("policies")
 }

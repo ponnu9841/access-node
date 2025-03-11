@@ -8,17 +8,18 @@ import prisma from "../utils/prisma";
 // } from "../validation/service";
 import { deleteRecord } from "../utils/delete-request";
 import { Router } from "express";
+import { errorHandler } from "../utils/error-handler";
 
 const router = Router();
 
-router.get("/", async (_, res) => {
+router.get("/", async (req, res) => {
    try {
       const about = await prisma.about.findFirst();
       res.status(200).json({
          data: about,
       });
    } catch (error) {
-      console.log(error);
+      errorHandler(error as Error, req, res);
    }
 });
 
@@ -64,7 +65,7 @@ router.post(
             res.status(404).json({ message: "Invalid Request" });
          }
       } catch (error) {
-         console.log(error);
+         errorHandler(error as Error, req, res);
       }
    }
 );
@@ -120,7 +121,7 @@ router.put(
 
          res.status(200).json({ data: about });
       } catch (error) {
-         console.log(error);
+         errorHandler(error as Error, req, res);
       }
    }
 );

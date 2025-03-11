@@ -24,7 +24,6 @@ export const deleteRecord = async (
         });
 
         res.status(200).json({ message: "Record deleted successfully" });
-        return
     } catch (error) {
         console.error("Error deleting record:", error);
         res.status(500).json({ message: "Failed to delete record" });

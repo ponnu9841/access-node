@@ -143,3 +143,15 @@ model Heading {
 
   @@map("headings")
 }
+
+model PagesBanner {
+  id        String   @id @default(uuid())
+  image     String   @db.VarChar(255)
+  alt       String?  @db.VarChar(255)
+  title     String?  @db.VarChar(255)
+  page      String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("pages_banners")
+}

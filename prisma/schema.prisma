@@ -65,3 +65,16 @@ model Partner {
 
   @@map("partners")
 }
+
+model Service {
+  id                String  @id @default(uuid())
+  title             String
+  image             String  @db.VarChar(255)
+  alt               String?
+  short_description String
+  long_description  String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("services")
+}

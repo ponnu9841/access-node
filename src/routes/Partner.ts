@@ -7,24 +7,18 @@ import { deleteRecord } from "../utils/delete-request";
 import { errorHandler } from "../utils/error-handler";
 
 const router = Router();
-const uploadMiddleware = upload("banner");
+const uploadMiddleware = upload("partner");
 
 router.get("/", async (req, res) => {
    try {
-      const banner = await prisma.banner.findMany({
-         orderBy: { createdAt: "desc" },
+      const partners = await prisma.partner.findMany({
          select: {
             id: true,
             image: true,
             alt: true,
-            title: true,
-            description: true,
          },
       });
-
-      res.status(200).json({
-         data: banner,
-      });
+      res.status(200).json({ data: partners });
    } catch (error) {
       errorHandler(error as Error, req, res);
    }
@@ -42,16 +36,14 @@ router.post(
             const reqBody = {
                image: filePath,
                alt: data.alt,
-               title: data.title,
-               description: data.description,
             };
-            const banner = await prisma.banner.create({
+            const partner = await prisma.partner.create({
                data: reqBody,
             });
-            res.status(200).json({ data: banner });
+            res.status(200).json({ data: partner });
          }
       } catch (error) {
-         errorHandler(error as Error, req, res);
+         res.status(500).json({ error: "An error occurred" });
       }
    }
 );
@@ -64,34 +56,32 @@ router.put(
       try {
          const data = req.body;
          const reqBody: { [key: string]: any } = {
-            alt: data.alt,
-            title: data.title,
-            description: data.description,
+            alt: data.alt || "",
          };
 
          if (req.file) {
             //update without saving image
             reqBody["image"] = extractFilePath(req.file);
-            const banner = await prisma.banner.findUnique({
+            const partner = await prisma.partner.findUnique({
                where: { id: data.id },
             });
-            deleteFileFromUrl(banner?.image as string);
+            deleteFileFromUrl(partner?.image as string);
          }
 
          // console.log(validated.value);
-         const service = await prisma.banner.update({
+         const partner = await prisma.partner.update({
             where: { id: data.id },
             data: reqBody,
          });
-         res.status(200).json({ data: service });
+         res.status(200).json({ data: partner });
       } catch (error) {
-         errorHandler(error as Error, req, res);
+         console.log(error);
       }
    }
 );
 
 router.delete("/", authenticateJWT, async (req, res) => {
-   deleteRecord(req, res, "banner");
+   deleteRecord(req, res, "partner");
 });
 
 export default router;

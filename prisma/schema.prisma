@@ -41,3 +41,17 @@ model Banner {
 
   @@map("banners")
 }
+
+model About {
+  id                String  @id @default(uuid())
+  title             String  @db.VarChar(255)
+  sub_title         String? @db.VarChar(255)
+  image_one         String
+  image_two         String
+  image_one_alt     String?
+  image_two_alt     String?
+  short_description String
+  long_description  String?
+
+  @@map("abouts")
+}

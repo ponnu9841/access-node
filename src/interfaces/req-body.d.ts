@@ -1,0 +1,1 @@
+type ReqBody = { [key: string]: any }

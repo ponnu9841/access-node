@@ -5,11 +5,12 @@ import prisma from "./prisma";
 export const deleteRecord = async (
     req: Request,
     res: Response,
-    modelName: keyof typeof prisma
+    modelName: keyof typeof prisma,
+    imageRequred = true,
 ) => {
     const { id, image } = req.query;
 
-    if (!id || !image) {
+    if ((!id || !image) && imageRequred) {
         res.status(404).json({ message: "Image or Id not found" });
         return;
     }

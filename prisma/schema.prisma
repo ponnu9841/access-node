@@ -67,14 +67,28 @@ model Partner {
 }
 
 model Service {
-  id                String  @id @default(uuid())
+  id                String   @id @default(uuid())
   title             String
-  image             String  @db.VarChar(255)
+  image             String   @db.VarChar(255)
   alt               String?
   short_description String
   long_description  String?
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
 
   @@map("services")
+}
+
+model Testimonial {
+  id          String   @id @default(uuid())
+  name        String
+  image       String?  @db.VarChar(255)
+  alt         String?  @db.VarChar(255)
+  vido_url    String?  @db.VarChar(255)
+  designation String?
+  testimonial String
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("testimonials")
 }

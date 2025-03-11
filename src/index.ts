@@ -9,6 +9,7 @@ import Testimonial from "./routes/Testimonial";
 import Gallery from "./routes/Gallery";
 import Teams from "./routes/Teams";
 import Contact from "./routes/Contact";
+import Heading from "./routes/Heading";
 
 const app: Express = express();
 const PORT = 8000;
@@ -55,6 +56,7 @@ app.use("/api/testimonial", Testimonial);
 app.use("/api/gallery", Gallery);
 app.use("/api/teams", Teams);
 app.use("/api/contact", Contact);
+app.use("/api/heading", Heading);
 
 app.listen(PORT);
 

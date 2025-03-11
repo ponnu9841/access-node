@@ -11,6 +11,7 @@ import Teams from "./routes/Teams";
 import Contact from "./routes/Contact";
 import Heading from "./routes/Heading";
 import PagesBanner from "./routes/PagesBanner";
+import Seo from "./routes/Seo";
 
 const app: Express = express();
 const PORT = 8000;
@@ -59,6 +60,7 @@ app.use("/api/teams", Teams);
 app.use("/api/contact", Contact);
 app.use("/api/heading", Heading);
 app.use("/api/pagesBanner", PagesBanner);
+app.use("/api/seoTags", Seo);
 
 app.listen(PORT);
 

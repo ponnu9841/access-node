@@ -8,19 +8,15 @@ const router = Router();
 
 router.get("/", async (req, res) => {
    try {
-      const contact = await prisma.contact.findFirst({
+      const headings = await prisma.heading.findMany({
          select: {
             id: true,
-            location: true,
-            map: true,
-            contactno_one: true,
-            contactno_two: true,
-            email_one: true,
-            email_two: true,
-            default: true,
+            title: true,
+            description: true,
+            section: true,
          },
       });
-      res.status(200).json({ data: contact });
+      res.status(200).json({ data: headings });
    } catch (error) {
       errorHandler(error as Error, req, res);
    }
@@ -30,17 +26,14 @@ router.post("/", authenticateJWT, async (req, res) => {
    const data = req.body;
    try {
       const reqBody = {
-         location: data.location,
-         map: data.map,
-         contactno_one: data.contactOne,
-         contactno_two: data.contactTwo,
-         email_one: data.emailOne,
-         email_two: data.emailTwo,
+         title: data.title,
+         description: data.description,
+         section: data.section,
       };
-      const contact = await prisma.contact.create({
+      const heading = await prisma.heading.create({
          data: reqBody,
       });
-      res.status(200).json({ data: contact });
+      res.status(200).json({ data: heading });
    } catch (error) {
       errorHandler(error as Error, req, res);
    }
@@ -50,27 +43,24 @@ router.put("/", authenticateJWT, async (req, res) => {
    try {
       const data = req.body;
       const reqBody = {
-         location: data.location,
-         map: data.map,
-         contactno_one: data.contactOne,
-         contactno_two: data.contactTwo || "",
-         email_one: data.emailOne,
-         email_two: data.emailTwo || "",
-      };
+        title: data.title,
+        description: data.description || "",
+        section: data.section,
+     };
 
       // console.log(validated.value);
-      const contact = await prisma.contact.update({
+      const heading = await prisma.heading.update({
          where: { id: data.id },
          data: reqBody,
       });
-      res.status(200).json({ data: contact });
+      res.status(200).json({ data: heading });
    } catch (error) {
       errorHandler(error as Error, req, res);
    }
 });
 
 router.delete("/", authenticateJWT, async (req, res) => {
-   deleteRecord(req, res, "contact", false);
+   deleteRecord(req, res, "heading", false);
 });
 
 export default router;

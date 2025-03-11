@@ -7,6 +7,7 @@ import Partner from "./routes/Partner";
 import Service from "./routes/Service";
 import Testimonial from "./routes/Testimonial";
 import Gallery from "./routes/Gallery";
+import Teams from "./routes/Teams";
 
 const app: Express = express();
 const PORT = 8000;
@@ -51,6 +52,7 @@ app.use("/api/partner", Partner);
 app.use("/api/service", Service);
 app.use("/api/testimonial", Testimonial);
 app.use("/api/gallery", Gallery);
+app.use("/api/teams", Teams);
 
 app.listen(PORT);
 

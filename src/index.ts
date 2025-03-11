@@ -10,6 +10,7 @@ import Gallery from "./routes/Gallery";
 import Teams from "./routes/Teams";
 import Contact from "./routes/Contact";
 import Heading from "./routes/Heading";
+import PagesBanner from "./routes/PagesBanner";
 
 const app: Express = express();
 const PORT = 8000;
@@ -57,6 +58,7 @@ app.use("/api/gallery", Gallery);
 app.use("/api/teams", Teams);
 app.use("/api/contact", Contact);
 app.use("/api/heading", Heading);
+app.use("/api/pagesBanner", PagesBanner);
 
 app.listen(PORT);
 

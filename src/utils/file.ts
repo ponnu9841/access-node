@@ -1,17 +1,3 @@
-export const extractFilePath = (file: Express.Multer.File): string => {
-   if (!file || !file.path) {
-      throw new Error("Invalid file object");
-   }
-
-   // Replace backslashes (Windows) with forward slashes
-   const normalizedPath = file.path.replace(/\\/g, "/");
-
-   // Extract the path after "public"
-   const relativePath = normalizedPath.split("/public").pop();
-
-   return `${process.env.BASE_URL}${relativePath}`;
-};
-
 import fs from "fs";
 import path from "path";
 
@@ -41,4 +27,18 @@ export const deleteFileFromUrl = (fileUrl: string): void => {
          console.error("An unknown error occurred while deleting the file.");
       }
    }
+};
+
+export const extractFilePath = (
+   file: Express.Multer.File | undefined
+): string => {
+   if (!file || !file.path) return "";
+
+   // Replace backslashes (Windows) with forward slashes
+   const normalizedPath = file.path.replace(/\\/g, "/");
+
+   // Extract the path after "public"
+   const relativePath = normalizedPath.split("/public").pop();
+
+   return `${process.env.BASE_URL}${relativePath}`;
 };

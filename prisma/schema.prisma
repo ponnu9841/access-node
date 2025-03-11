@@ -117,3 +117,18 @@ model Team {
 
   @@map("teams")
 }
+
+model Contact {
+  id            String   @id @default(uuid())
+  location      String
+  map           String
+  contactno_one String   @db.VarChar(255)
+  contactno_two String?  @db.VarChar(255)
+  email_one     String   @db.VarChar(255)
+  email_two     String?  @db.VarChar(255)
+  default       Boolean? @default(false)
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("contacts")
+}

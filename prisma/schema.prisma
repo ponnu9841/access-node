@@ -104,3 +104,16 @@ model Gallery {
 
   @@map("galleries")
 }
+
+model Team {
+  id               String   @id @default(uuid())
+  name             String   @db.VarChar(255)
+  image            String   @db.VarChar(255)
+  alt              String?  @db.VarChar(255)
+  designation      String?  @db.VarChar(255)
+  linkedin_profile String?  @db.VarChar(255)
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@map("teams")
+}

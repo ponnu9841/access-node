@@ -5,6 +5,7 @@ import Banner from "./routes/Banner";
 import About from "./routes/About";
 import Partner from "./routes/Partner";
 import Service from "./routes/Service";
+import Testimonial from "./routes/Testimonial";
 
 const app: Express = express();
 const PORT = 8000;
@@ -47,6 +48,7 @@ app.use("/api/banner", Banner);
 app.use("/api/about", About);
 app.use("/api/partner", Partner);
 app.use("/api/service", Service);
+app.use("/api/testimonial", Testimonial);
 
 app.listen(PORT);
 

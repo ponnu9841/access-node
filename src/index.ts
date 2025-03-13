@@ -25,7 +25,7 @@ app.use(
                ? [
                     "http://localhost:3000", //add your frontend domain urls here
                  ]
-               : ["https://api.accesstech.in"];
+               : ["https://accesstech.in"];
          if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
          } else {

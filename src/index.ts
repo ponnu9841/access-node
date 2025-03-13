@@ -20,12 +20,12 @@ const PORT = 8000;
 app.use(
    cors({
       origin: function (origin, callback) {
-         const allowedOrigins =
-            process.env.NODE_ENV === "development"
-               ? [
-                    "http://localhost:3000", //add your frontend domain urls here
-                 ]
-               : ["https://accesstech.in"];
+         const allowedOrigins =[
+            "http://localhost:3000",
+            "https://accesstech.in",
+            "https://www.accesstech.in",
+            "https://api.accesstech.in"
+         ]
          if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
          } else {

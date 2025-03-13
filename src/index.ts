@@ -13,6 +13,7 @@ import Heading from "./routes/Heading";
 import PagesBanner from "./routes/PagesBanner";
 import Seo from "./routes/Seo";
 import Policy from "./routes/Policy";
+import GrievanceOfficer from "./routes/GrievanceOfficer";
 
 const app: Express = express();
 const PORT = 8000;
@@ -63,6 +64,7 @@ app.use("/api/heading", Heading);
 app.use("/api/pagesBanner", PagesBanner);
 app.use("/api/seoTags", Seo);
 app.use("/api/policies", Policy);
+app.use("/api/grievance-officer", GrievanceOfficer);
 
 app.listen(PORT);
 

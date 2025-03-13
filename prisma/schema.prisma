@@ -183,3 +183,16 @@ model Policy {
 
   @@map("policies")
 }
+
+model GrievanceOfficer {
+  id          String   @id @default(uuid())
+  name        String   @db.VarChar(255)
+  email       String   @db.VarChar(255)
+  contact     String   @db.VarChar(255)
+  designation String   @db.VarChar(255)
+  address     String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("grievance_officer")
+}

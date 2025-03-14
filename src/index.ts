@@ -16,7 +16,7 @@ import Policy from "./routes/Policy";
 import GrievanceOfficer from "./routes/GrievanceOfficer";
 
 const app: Express = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 app.use(
    cors({
       origin: function (origin, callback) {

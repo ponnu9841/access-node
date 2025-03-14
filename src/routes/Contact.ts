@@ -8,7 +8,7 @@ const router = Router();
 
 router.get("/", async (req, res) => {
    try {
-      const contact = await prisma.contact.findFirst({
+      const contact = await prisma.contact.findMany({
          select: {
             id: true,
             location: true,
@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
             default: true,
          },
       });
+      contact?.sort((e) => e.default === true ? -1 : 1);
       res.status(200).json({ data: contact });
    } catch (error) {
       errorHandler(error as Error, req, res);
@@ -67,6 +68,32 @@ router.put("/", authenticateJWT, async (req, res) => {
    } catch (error) {
       errorHandler(error as Error, req, res);
    }
+});
+
+router.put("/mark-as-default", authenticateJWT, async (req, res) => {
+   try {
+      const { id } = req.body;
+      if (!id) {
+         res.status(400).json({ message: "ID is required" });
+         return;
+      }
+      // Start a transaction
+      await prisma.$transaction([
+         // Set all contacts' default to false
+         prisma.contact.updateMany({
+            data: { default: false },
+         }),
+         // Set the selected contact's default to true
+         prisma.contact.update({
+            where: { id },
+            data: { default: true },
+         }),
+      ]);
+
+      res.status(200).json({
+         message: "Contact marked as default successfully",
+      });
+   } catch (error) {}
 });
 
 router.delete("/", authenticateJWT, async (req, res) => {

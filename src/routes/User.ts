@@ -7,6 +7,7 @@ import { errorHandler } from "../utils/error-handler";
 import { authenticateJWT } from "../utils/auth-middleware";
 import { AuthRequest } from "../interfaces/auth-request";
 import prisma from "../utils/prisma";
+import validationErrorHandler from "../utils/validation-error-handler";
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.post("/register", async (req: Request, res: Response) => {
    };
 
    const response = validateUser(reqBody);
+   validationErrorHandler(response, res);
 
    try {
       if (name) {
@@ -49,10 +51,8 @@ router.post("/login", async (req: Request, res: Response) => {
       password,
    };
    const response = validateUserWithoutName(reqBody);
-   if (response?.error?.details) {
-      res.status(400).json({ error: response.error.details[0].message });
-      return;
-   }
+   validationErrorHandler(response, res);
+
    try {
       const existingUser = await prisma.user.findUnique({
          where: { email },

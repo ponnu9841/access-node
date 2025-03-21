@@ -27,8 +27,14 @@ export const authenticateJWT = (
 
    try {
       const decoded = jwt.verify(token, SECRET_KEY);
-      req.user = decoded;
-      return next();
+      if (typeof decoded === "object" && "type" in decoded) {
+         if (decoded.type !== "admin")
+            res.status(401).json({ error: "Unauthorized" });
+         req.user = decoded;
+         next();
+         return;
+      }
+      res.status(401).json({ error: "Unauthorized" });
    } catch (error) {
       res.status(401).json({ message: "Unauthorized" });
       return;

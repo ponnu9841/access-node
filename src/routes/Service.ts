@@ -34,6 +34,20 @@ router.get("/", async (req, res) => {
    }
 });
 
+router.get("/:id", async (req, res) => {
+   try {
+      const id = req.params.id;
+      const service = await prisma.service.findFirst({
+         where: { id: id },
+      });
+      res.status(200).json({
+         data: service,
+      });
+   } catch (error) {
+      errorHandler(error as Error, req, res);
+   }
+});
+
 router.post(
    "/",
    authenticateJWT,

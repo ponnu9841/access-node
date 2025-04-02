@@ -14,6 +14,7 @@ import PagesBanner from "./routes/PagesBanner";
 import Seo from "./routes/Seo";
 import Policy from "./routes/Policy";
 import GrievanceOfficer from "./routes/GrievanceOfficer";
+import Blog from "./routes/Blog";
 
 const app: Express = express();
 const PORT = process.env.PORT || 8000;
@@ -65,6 +66,7 @@ app.use("/api/pagesBanner", PagesBanner);
 app.use("/api/seoTags", Seo);
 app.use("/api/policies", Policy);
 app.use("/api/grievance-officer", GrievanceOfficer);
+app.use("/api/blog", Blog);
 
 app.listen(PORT);
 

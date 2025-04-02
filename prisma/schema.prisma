@@ -198,13 +198,27 @@ model GrievanceOfficer {
 }
 
 model Blog {
-  id      String @id @default(uuid())
-  image   String @db.VarChar(255)
-  alt     String @db.VarChar(255)
-  title   String @db.VarChar(255)
-  content String
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
+  id        String   @id @default(uuid())
+  image     String   @db.VarChar(255)
+  alt       String   @db.VarChar(255)
+  title     String   @db.VarChar(255)
+  content   String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("blog")
+}
+
+model Career {
+  id           String   @id @default(uuid())
+  image        String   @db.VarChar(255)
+  alt          String?  @db.VarChar(255)
+  title        String   @db.VarChar(255)
+  description  String
+  url          String   @db.VarChar(255)
+  button_title String?   @db.VarChar(255)
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @map("updated_at")
+
+  @@map("career")
 }
